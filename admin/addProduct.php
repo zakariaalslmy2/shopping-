@@ -3,6 +3,8 @@ include("../include/connected.php");
 ?>
 
 <?php
+
+
 $proname=@$_POST["proName"];
 $proPrice=@$_POST["proPrice"];
 $proSection=@$_POST["proSection"];
@@ -11,26 +13,32 @@ $proSize=@$_POST["proSize"];
 $proUnv=@$_POST["proUnv"];
 $proadd=@$_POST["proadd"];
 
+
 // img start
-$ImageName=@$_FILES['proimg']['name'];
-$ImageTmp=@$_FILES["proimg"]['tmp_name'];
+@$ImageName=$_FILES['proimg']['name'];
+@$ImageTmp=$_FILES['proimg']['tmp_name'];
+
 
 // img end
 
 if(isset($proadd)){
-    if(empty($proname)||empty($proPrice)||empty($proSection)||empty($proDescrption)||empty($proSize)||empty($proUnv)){
+    if(empty($proname)||empty($proPrice)||empty($proSection)||empty($proDescrption)||empty($proSize)){
         echo '<script> alert(" الرجاء ملئ جميع الحقول ")</script>';
     }
     else{
-        $proImage=rand(0,5000)."_".$ImageName;
-        move_uploaded_file($ImageTmp,"../uploads/images/".$proImage);
-        $query="INSERT INTO `product` ( `proName`, `proimg`, `proPrice`, `proSection`, `proDescrption`, `proSize`, `proUnv`) VALUES ( '$proname', ' $proImage', '$proPrice ','$proSection', '$proDescrption', '$proSize ', '$proUnv ')";
-        $result=mysqli_query($con,$query);
-        if(isset($result)){
-            echo '<script> alert("تم اضافة المنتج بنجاح")</script>';
-        }
-        else{
-            echo '<script> alert("لم يتم اضافة المنتج ")</script>';
+        // تنظيف اسم الملف من المسافات
+        $ImageName = str_replace(' ', '', $ImageName);
+        
+        if(move_uploaded_file($ImageTmp, "../uploads/images/".$ImageName)){
+            $query = "INSERT INTO `product` (`proName`, `proimg`, `proPrice`, `proSection`, `proDescrption`, `proSize`, `proUnv`) 
+                     VALUES ('$proname', '$ImageName', '$proPrice', '$proSection', '$proDescrption', '$proSize', '$proUnv')";
+            $result = mysqli_query($con, $query);
+            
+            if($result){
+                echo '<script> alert("تم اضافة المنتج بنجاح")</script>';
+            }
+        } else {
+            echo '<script> alert("فشل في رفع الصورة")</script>';
         }
     }
 }
@@ -69,8 +77,6 @@ if(isset($proadd)){
                     <label for="size"> الاحجام المتوفرة</label>
                     <input type="text" id="size" name="proSize">
 
-                    <label for="unv">توفر المنتج</label>
-                    <input type="text" id="unv" name="proUnv">
 
                     <div>
                         <label for="from_control"> الصنف </label>

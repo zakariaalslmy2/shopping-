@@ -1,8 +1,6 @@
 <?php 
-
 include("../include/connected.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,14 +8,9 @@ include("../include/connected.php");
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
     <link rel="stylesheet" href="../all.min.css">
     <link rel="stylesheet" href="../css/style_admin.css">
-
-
-    <title>Document</title>
-
+    <title> لوحة التحكم </title>
 </head>
 
 <body>
@@ -29,9 +22,6 @@ header("location:../index.php");
 
 }
 else{
-
-
-
 ?>
 
     <?php
@@ -52,17 +42,10 @@ $id=@$_GET["id"];
         $result=mysqli_query($con, $query);
         echo '<script> alert("  تم اضافة القسم بنجاح ")</script>';
         
-
-
-
     }
 
 
-
-
     }
-
-
 
 ?>
 
@@ -91,12 +74,28 @@ $id=@$_GET["id"];
     <div class="sidebar_container">
         <div class="sidebar">
             <h1> لوحة تحكم الإدارة</h1>
+
+
+            <ul>
+                <li>
+                    <a href="../index.php" target="_blank">
+                        <span>الصفحة الرئيسية</span>
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="product.php" target="_blank">
+                        <span>صفحة المنتجات</span>
+                        <i class="fa-solid fa-shirt"></i>
+                    </a>
+                </li>
+                <!-- باقي العناصر بنفس النمط -->
+            </ul>
             <ul>
                 <li><a href="../index.php" target="_blank">الصفحة الرئسية<i class="fa-solid fa-house"></i></a></li>
-                <li><a href="../index.php" target="_blank">صفحة المنتجات<i class="fa-solid fa-shirt"></i></a></li>
-                <li><a href="../index.php" target="_blank">اضافة منتج <i class="fa-solid fa-folder-plus"></i></a></li>
-                <li><a href="../index.php" target="_blank"> معلومات الاعضاء <i
-                            class="fa-sharp fa-solid fa-users"></i></a></li>
+                <li><a href="product.php" target="_blank">صفحة المنتجات<i class="fa-solid fa-shirt"></i></a></li>
+                <li><a href="addProduct.php" target="_blank">اضافة منتج <i class="fa-solid fa-folder-plus"></i></a></li>
+                <li><a href="" target="_blank"> معلومات الاعضاء <i class="fa-sharp fa-solid fa-users"></i></a></li>
                 <li><a href="../index.php" target="_blank"> طلبات الزبائى<i class="fa-solid fa- fa-folder-open"></i></a>
                 </li>
                 <li><a href="logout.php" target="_blank"> تسجيل خروج<i class="fa-solid fa-right-from-bracket "></i></a>

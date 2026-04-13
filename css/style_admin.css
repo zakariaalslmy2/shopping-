@@ -32,18 +32,23 @@ body {
   padding: 10px;
   border-bottom: 1px solid #fff;
   float: right;
-}
-
-.sidebar_container .sidebar ul li i {
-  margin-left: 30px;
-  color: black;
+  width: 100%; /* إضافة عرض كامل */
 }
 
 .sidebar_container .sidebar ul li a {
-  display: block;
+  display: flex; /* تغيير العرض إلى flex */
+  align-items: center; /* محاذاة العناصر عموديًا */
+  justify-content: flex-end; /* محاذاة العناصر لليمين */
   padding: 10px;
   color: black;
   text-decoration: none;
+  gap: 15px; /* إضافة مسافة بين العناصر */
+}
+
+.sidebar_container .sidebar ul li i {
+  margin-left: 0; /* إزالة الهامش الأيسر */
+  color: black;
+  font-size: 20px; /* تعديل حجم الأيقونة */
 }
 
 .sidebar_container .sidebar ul li a:hover {
@@ -119,6 +124,21 @@ td {
   color: white;
 }
 
+.sidebar_container .content_sec table .update {
+  color: white;
+  font-size: 18px;
+  background-color: rgb(3, 228, 100);
+  padding: 8px 18px;
+  border-radius: 2px;
+  border: 1px solid rgb(154, 240, 182);
+  margin-right: 5px;
+}
+
+.update:hover {
+  background-color: rgb(8, 94, 23);
+  color: white;
+}
+
 /* start add product */
 
 .form_product {
@@ -167,5 +187,8 @@ input {
   border-radius: 4px;
   border: 1px solid #ccc;
 }
-
+.sidebar_container .content_sec table img {
+  width: 50px;
+  height: 50px;
+}
 /* end add product */

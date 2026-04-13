@@ -194,7 +194,7 @@ main {
 }
 .prodect_name {
   margin-top: 15px;
-  text-align: center;
+  padding-left: 50px;
 }
 .prodrct_price {
   margin-top: 5px;
@@ -266,10 +266,10 @@ input[type="number"] {
   text-align: center;
   font-size: 18px;
   font-weight: bold;
-  background-color: red;
+  /* background-color: red; */
   text: center;
   padding: 5px 5px;
-  border: 1px solid rgb(129, 2, 2);
+  /* border: 1px solid rgb(129, 2, 2); */
 }
 /* prodect end */
 /* footer start */

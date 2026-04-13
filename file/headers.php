@@ -39,8 +39,8 @@ $con=mysqli_connect($host,$username,$password,$dbname);
         <!-- start search -->
         <div class="search">
             <div class="search_bar">
-                <form action="" method="get">
-                    <input type="text" class="search_input" name="" placeholder="ادخل كلمة البحث">
+                <form action="search.php" method="get">
+                    <input type="text" class="search_input" name="search_input" placeholder="ادخل كلمة البحث">
                     <button class="button_search" name="bttn_search">بحث</button>
 
                 </form>
@@ -89,38 +89,40 @@ $con=mysqli_connect($host,$username,$password,$dbname);
     <div class="last-post">
         <h4>مضاف حديثا </h4>
         <ul>
+            <?php
+
+$query="select *from product ORDER BY ID DESC limit 2";
+$result=mysqli_query($con,$query);
+while($row=mysqli_fetch_assoc($result)){
+// echo $row['proimg'];
+
+?>
             <li>
                 <a href="">
                     <span class="span-imag">
+                        <?php
+                    // echo $row['proimg'];
+$imagePath = "uploads/images/" . trim($row["proimg"]);
+// إزالة أي مسافات زائدة من اسم الملف
+$imagePath = str_replace(' ', '', $imagePath);
 
-                        <img src="image/shopping.png" alt="">
+if (file_exists($imagePath) && !empty($row["proimg"])) {
+echo '<img src="'.$imagePath.'" class="product-image" alt="صورة المنتج">';
+// للتأكد من المسار الصحيح
+// echo $imagePath;
+} else {
+echo 'الصورة غير متوفرة';
+}?>
+
+
 
                     </span>
                 </a>
             </li>
-            <li>
-                <a href="">
-                    <span class="span-imag">
+            <?php
+}
+            ?>
 
-                        <img src="image/shopping1.png" alt="">
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="span-imag">
-
-                        <img src="image/shopping2.png" alt="">
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <span class="span-imag">
-                        <img src="image/shopping3.png" alt="">
-                    </span>
-                </a>
-            </li>
         </ul>
 
         <!-- last-post end -->
